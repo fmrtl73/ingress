@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: nginx-ingress-controller-v1
-  namespace: kube-system
   labels:
     k8s-app: nginx-ingress-lb
     kubernetes.io/cluster-service: "true"
@@ -15,24 +14,10 @@ spec:
     spec:
       hostNetwork: true
       terminationGracePeriodSeconds: 60
-      nodeSelector:
-        role: edge-router
       containers:
       - image: gcr.io/google_containers/nginx-ingress-controller:0.8.3
         name: nginx-ingress-lb
         imagePullPolicy: Always
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 10254
-            scheme: HTTP
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 10254
-            scheme: HTTP
-          initialDelaySeconds: 10
-          timeoutSeconds: 1
         # use downward API
         env:
           - name: POD_NAME
