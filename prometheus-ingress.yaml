@@ -2,13 +2,13 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: prometheus
-  namespace: monitoring
+  namespace: default
 spec:
   rules:
-  - host: prometheus.miamartel.com
+  - host: prometheus.px
     http:
       paths:
       - path: /
         backend:
-          serviceName: prometheus
-          servicePort: 9090
+          serviceName: prometheus-server
+          servicePort: 80
