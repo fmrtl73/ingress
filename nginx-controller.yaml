@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: nginx-ingress-controller-v1
-  namespace: kube-system
+  namespace: ingress-nginx
   labels:
     k8s-app: nginx-ingress-lb
     kubernetes.io/cluster-service: "true"
@@ -37,3 +37,4 @@ spec:
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
+        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
