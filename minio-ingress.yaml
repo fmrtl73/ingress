@@ -10,5 +10,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: minio-service
+          serviceName: px-minio
           servicePort: 9000
