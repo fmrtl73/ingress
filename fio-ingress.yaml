@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fioread
+  namespace: default
+spec:
+  rules:
+  - host: fioread.px
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: fiotools-read
+          servicePort: 8001
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fiowrite
+  namespace: default
+spec:
+  rules:
+  - host: fiowrite.px
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: fiotools-write
+          servicePort: 8000

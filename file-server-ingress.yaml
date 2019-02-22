@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: file-server
+  namespace: default
+spec:
+  rules:
+  - host: file-server.px
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: file-svc
+          servicePort: 80 
